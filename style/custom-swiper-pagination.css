@@ -1,0 +1,22 @@
+.swiper-pagination-bullet {
+  background: #fff !important;
+  opacity: 1 !important;
+  width: 12px !important;
+  height: 12px !important;
+  margin: 0 6px !important;
+  border-radius: 50% !important;
+  border: 2px solid #fff !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: background 0.3s, border 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fff !important;
+  border: 2px solid #e24907 !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.swiper-pagination {
+  bottom: 5px !important;
+}
