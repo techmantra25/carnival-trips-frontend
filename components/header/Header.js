@@ -17,7 +17,7 @@ export default function Header() {
 
   async function getAll() {
     const response = await getAllTripCategories();
-    console.log(response, "tripCategories`");
+
     let filteredTripCategories = response?.data.filter(
       (item) => item.is_header == 1
     );
@@ -28,7 +28,7 @@ export default function Header() {
     getAll();
   }, []);
 
-  console.log(tripCategories, "tripCategories");
+
 
   return (
     <>
@@ -97,7 +97,7 @@ export default function Header() {
                 </li>
               ))}
             </ul>
-            
+
             <ul className="navbar-nav custom-navbar">
               <SocialIcons />
             </ul>

@@ -1,7 +1,7 @@
 import React from "react";
 
 const DataContent = ({ ItineryData }) => {
-  console.log(ItineryData, "itinery data");
+
   return (
     <section className="listing-section-3">
       <div className="background">

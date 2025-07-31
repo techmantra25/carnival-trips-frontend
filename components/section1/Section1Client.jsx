@@ -33,7 +33,7 @@ export function Section1Client({ tripsCategories, homePageBannerData }) {
     "I came, I saw, I captured Exploring the unexplored Challenging the unchallenged Bonding with people Creating memories";
   const result = splitByWordCount(homePageBannerData?.title || title, 3);
 
-  console.log(result, "result");
+ 
 
   return (
     <section className="section-1">

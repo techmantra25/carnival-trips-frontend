@@ -13,7 +13,6 @@ const ListingPage = async ({ params }) => {
   const response = await getPackagesItineraries(slug);
   let ItineryData = response?.data;
 
-  console.log(response, "response");
   return (
     <div className="listing-content">
       <DestinationInfo ItineryData={ItineryData} />

@@ -46,17 +46,13 @@ const ChooseTripSlider = ({ ItineryData, slug }) => {
   const nextClass = `trip-duration-swiper-next-${uniqueId}`;
   const prevClass = `trip-duration-swiper-prev-${uniqueId}`;
 
-  console.log("ChooseTripSlider", ItineryData);
-
   const route = useRouter();
 
   let tripData = ItineryData?.trip_duration || [];
 
-  console.log("tripData", tripData);
-
   const handleRedirect = (trip) => {
     // Implement the redirect logic here
-    console.log("Redirecting to trip:", trip);
+
     route.push(`/itinerary/${trip?.slug}`);
   };
 

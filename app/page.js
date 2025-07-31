@@ -9,7 +9,7 @@ import Section4 from "@/components/section4/Section4";
 
 export default async function Home() {
   const blogResponse = await getAllBlogs();
-  console.log({ blogResponse });
+ 
 
   return (
     <>

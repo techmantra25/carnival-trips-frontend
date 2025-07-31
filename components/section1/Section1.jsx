@@ -15,9 +15,12 @@ const Section1 = async () => {
 
   const homePageBannerData = homePageBanneResponse?.data[0];
 
-  console.log(HighlitedtripsCategories,'HighlitedtripsCategories');
-
-  return <Section1Client tripsCategories={HighlitedtripsCategories} homePageBannerData={homePageBannerData} />;
+  return (
+    <Section1Client
+      tripsCategories={HighlitedtripsCategories}
+      homePageBannerData={homePageBannerData}
+    />
+  );
 };
 
 export default Section1;

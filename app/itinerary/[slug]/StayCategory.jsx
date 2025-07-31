@@ -41,7 +41,7 @@ const StayCategory = ({
 		setActiveItems(newActiveItems);
 		// Log selected sub-options
 		const selected = chooseOptions.subOptions.filter((_, idx) => newActiveItems.includes(idx));
-		console.log("Selected sub-options:", selected);
+		
 	};
 
 	return (

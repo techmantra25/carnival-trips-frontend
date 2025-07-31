@@ -10,11 +10,6 @@ const MultiBooking = ({
   packageData,
   handleClose,
 }) => {
-  console.log(itineraryData, "Itinerary Data");
-  console.log(destination, "Destination");
-  console.log(packageData, "Package Data");
-  console.log(handleClose, "Handle Close");
-
   const [selectedPackageId, setSelectedPackageId] = useState("");
 
   // Combine all itineraries into a single array with package info
@@ -162,8 +157,7 @@ const MultiBooking = ({
 
     if (!validateForm()) return;
 
-    console.log("Form data before submission:", formData);
-
+  
     const submissionPromise = async () => {
       const res = await generateLead(formData);
       if (res?.status === 201) {

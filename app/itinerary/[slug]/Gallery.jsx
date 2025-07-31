@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 const Gallery = ({ ItineryData }) => {
-  console.log(ItineryData, "ItineryData");
+
   return (
     <section className="detail-banner-section">
       <div className="bg">

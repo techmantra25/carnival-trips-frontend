@@ -11,9 +11,6 @@ export default function FooterClient({ socialMedia, webSiteSettings, policy }) {
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterLoading, setNewsletterLoading] = useState(false);
 
-
-  console.log(process.env.NEXT_PUBLIC_ZEROBOUNCE_API_KEY,'zerobounce')
-
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
     if (!newsletterEmail) return;

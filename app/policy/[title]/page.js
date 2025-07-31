@@ -4,8 +4,6 @@ import TopBanner from "@/app/tripcategory/[id]/TopBanner";
 import TopContext from "./TopContext";
 
 const PolicyPage = async ({ params }) => {
-  console.log(await params, "params");
-
   let title = await params.title;
 
   let filterPolicy = {};
@@ -13,7 +11,6 @@ const PolicyPage = async ({ params }) => {
   try {
     const policyResponse = await getPageContent();
     if (policyResponse?.status && policyResponse?.data) {
-      console.log(policyResponse.data, "policyResponse.data");
       let policy = policyResponse.data;
       filterPolicy = policy.find((item) => item?.title === title) || {};
     }

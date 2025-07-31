@@ -4,7 +4,7 @@ import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const TextSlider = ({ textArray }) => {
-  console.log(textArray, "textArray");
+
   return (
     <Swiper
       //  modules={[Navigation]}

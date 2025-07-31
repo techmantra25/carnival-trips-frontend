@@ -20,8 +20,6 @@ export default async function Section2() {
   const offerResponse = await getOffers();
   const offers = offerResponse?.data;
 
-  console.log({ offers });
-
   // const CampaignBannerComponents = [
   //   CampaignBanner1,
   //   CampaignBanner2,
@@ -49,13 +47,11 @@ export default async function Section2() {
   );
 }
 
-
 const BannerContainer = ({ BannerElement }) => {
   // Extract relative path from full link
   const relativeLink = BannerElement?.link
     ? new URL(BannerElement.link).pathname
     : null;
-
 
   return (
     <div
@@ -93,6 +89,3 @@ const BannerContainer = ({ BannerElement }) => {
     </div>
   );
 };
-
-
-

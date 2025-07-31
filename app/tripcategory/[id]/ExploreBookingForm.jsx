@@ -13,7 +13,7 @@ const ExploreBookingForm = ({
 }) => {
   const validDateRange = Number(itineraryData?.total_days || 0);
 
-  console.log(validDateRange, "Valid Date Range");
+  
 
   const [formData, setFormData] = useState({
     customerName: "",
@@ -84,7 +84,7 @@ const ExploreBookingForm = ({
     if (!validateForm()) return;
 
     // Simulate API submission
-    console.log("Form submitted:", formData);
+ 
     await toast.promise(
       generateLead(formData).then((res) => {
         if (res?.status === 201) {

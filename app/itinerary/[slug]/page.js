@@ -14,7 +14,7 @@ const Detailspage = async ({ params }) => {
   const slug = await params?.slug;
   const ItineryData = await getItinerariesDetails(slug);
 
-  console.log(ItineryData, "ItineryData");
+
 
   return (
     <div className="detail-content">

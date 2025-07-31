@@ -12,7 +12,6 @@ const PopularListingPage = async ({ params }) => {
   const response = await getPackagesFromCity(slug);
   let ItineryData = response?.data;
 
-  console.log(response, "PopularListingPage");
   return (
     <div className="listing-content">
       <PopularDestinationInfo ItineryData={ItineryData} slug={slug} />
