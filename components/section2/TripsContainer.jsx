@@ -12,25 +12,25 @@ const TripsContainer = ({ category }) => {
   const router = useRouter();
   const [renderingKey, setRenderingKey] = useState(0);
 
-  const { selectedTab, setSelectedTab } = useTabsStore();
+  // const { selectedTab, setSelectedTab } = useTabsStore();
 
-  useEffect(() => {
-    // Force Swiper re-render on tab change
-    setRenderingKey(prev => prev + 1);
-  }, [selectedTab]);
+  // useEffect(() => {
+  //   // Force Swiper re-render on tab change
+  //   setRenderingKey(prev => prev + 1);
+  // }, [selectedTab]);
 
-  const getCurrentList = () => {
-    if (selectedTab === "tours") {
-      return category?.destinations || [];
-    } else if (selectedTab === "activities") {
-      return category?.activities || [];
-    } else if (selectedTab === "experiences") {
-      return category?.experiences || [];
-    }
-    return [];
-  };
+  // const getCurrentList = () => {
+  //   if (selectedTab === "tours") {
+  //     return category?.destinations || [];
+  //   } else if (selectedTab === "activities") {
+  //     return category?.activities || [];
+  //   } else if (selectedTab === "experiences") {
+  //     return category?.experiences || [];
+  //   }
+  //   return [];
+  // };
 
-  const currentList = getCurrentList();
+  // const currentList = getCurrentList();
 
   return (
     <div
@@ -112,8 +112,8 @@ const TripsContainer = ({ category }) => {
                     }}
                     className="swiper-wrapper"
                   >
-                    {currentList.length > 0 ? (
-                      currentList.map((item, index) => (
+                    {category?.destinations.length > 0 ? (
+                      category?.destinations.map((item, index) => (
                         <SwiperSlide key={index} className="swiper-slide">
                           <Link href={`/destination/${item?.slug}`}>
                             <div className="content-wrap">
