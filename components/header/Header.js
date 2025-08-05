@@ -1,6 +1,6 @@
 "use client";
 import { getAllTripCategories } from "@/api/tripApi";
-import { AlignJustify } from "lucide-react";
+import { AlignJustify, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -9,26 +9,54 @@ import SocialIcons from "./SocialIcons";
 
 export default function Header() {
   const [show, setShow] = useState(false);
+  const [showAllDestinations, setShowAllDestinations] = useState(false);
+  const [allDestinations, setAllDestinations] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const handleShowAllDestinations = () => setShowAllDestinations(true);
+  const handleCloseAllDestinations = () => setShowAllDestinations(false);
+
   const [tripCategories, setTripCategories] = useState([]);
 
-  async function getAll() {
-    const response = await getAllTripCategories();
-
-    let filteredTripCategories = response?.data.filter(
-      (item) => item.is_header == 1
-    );
-    setTripCategories(filteredTripCategories);
-  }
-
   useEffect(() => {
+    async function getAll() {
+      try {
+        const response = await getAllTripCategories();
+
+        const filteredTripCategories = response?.data?.filter(
+          (item) => item.is_header === 1
+        );
+
+        // Step 1: Flatten all destination arrays
+        const allDestinations = filteredTripCategories.flatMap(
+          (item) => item.destinations || []
+        );
+
+        // Step 2: Remove duplicates by destination id
+        const uniqueDestinationsMap = new Map();
+
+        allDestinations.forEach((dest) => {
+          if (!uniqueDestinationsMap.has(dest.id)) {
+            uniqueDestinationsMap.set(dest.id, dest);
+          }
+        });
+
+        const uniqueDestinations = Array.from(uniqueDestinationsMap.values());
+
+        // Optional: set to state
+        setTripCategories(filteredTripCategories);
+        setAllDestinations(uniqueDestinations);
+      } catch (error) {
+        console.error("Error fetching trip categories:", error);
+      }
+    }
+
     getAll();
   }, []);
 
-
+  console.log("All Destinations:", allDestinations);
 
   return (
     <>
@@ -65,6 +93,11 @@ export default function Header() {
                 <SocialIcons />
               </ul>
             </div>
+            <div className="hamburger-all" onClick={handleShowAllDestinations}>
+              <div className="hamburger-wrap">
+                <Menu />
+              </div>
+            </div>
             <div className="hamburger" onClick={handleShow}>
               <div className="hamburger-wrap">
                 <AlignJustify />
@@ -72,6 +105,47 @@ export default function Header() {
             </div>
           </div>
         </nav>
+        <Offcanvas
+          show={showAllDestinations}
+          onHide={handleCloseAllDestinations}
+          placement="end"
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>
+              <Image
+                width={120}
+                height={60}
+                src="/assets/images/logo.png"
+                alt="logo"
+              />
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <ul className="navbar-nav mobile-menu">
+              <li>
+                <h4>Explore All Destinations</h4>
+              </li>
+              {allDestinations.map((category) => (
+                <li className="nav-item" key={category.id}>
+                  <Link
+                    className="nav-link"
+                    href={`/destination/${category.slug}`}
+                    onClick={handleCloseAllDestinations}
+                  >
+                    <Image
+                      src={category?.image || "/fallback.jpg"} // fallback if image missing
+                      alt={category.name}
+                      width={100}
+                      height={50}
+                      style={{ objectFit: "cover" }}
+                    />
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Offcanvas.Body>
+        </Offcanvas>
         <Offcanvas show={show} onHide={handleClose} placement="end">
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>
