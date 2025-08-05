@@ -3,7 +3,7 @@ import React from 'react'
 
 const ActivityContainer = () => {
   return (
-    <div>
+    <div className="inner-section inner-section-2"> 
       <h2>Activity Container</h2>
     </div>
   )

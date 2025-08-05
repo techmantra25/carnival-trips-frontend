@@ -1,20 +1,24 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import DestinationContainer from "./DestinationContainer";
 import ActivityContainer from "./ActivityContainer";
 import ExperienceContainer from "./ExperienceContainer";
 import useTabsStore from "@/stores/useTabsStore";
 
-const HomePageContainer = () => {
+const HomePageContainer = ({ tripsCategories, offers }) => {
   const { selectedTab, setSelectedTab } = useTabsStore();
-
-    console.log("Selected Tab in HomePageContainer:", selectedTab);
+  console.log("Selected Tab:", selectedTab);
 
   return (
     <div>
-      <DestinationContainer />
-      <ActivityContainer />
-      <ExperienceContainer />
+      {selectedTab === "tours" && (
+        <DestinationContainer
+          tripsCategories={tripsCategories}
+          offers={offers}
+        />
+      )}
+      {selectedTab === "activities" && <ActivityContainer />}
+      {selectedTab === "experiences" && <ExperienceContainer />}
     </div>
   );
 };

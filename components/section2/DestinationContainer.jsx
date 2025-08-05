@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import { getOffers } from "@/api/homepageApi";
 import { getAllTripCategories } from "@/api/tripApi";
 import Image from "next/image";
@@ -7,12 +5,7 @@ import Link from "next/link";
 import CuratedCategories from "./CuratedCategories";
 import TripsContainer from "./TripsContainer";
 
-async function DestinationContainer() {
-  const response = await getAllTripCategories();
-  const tripsCategories = response?.data;
-
-  const offerResponse = await getOffers();
-  const offers = offerResponse?.data;
+function DestinationContainer({ tripsCategories, offers }) {
   return (
     <>
       <CuratedCategories tripsCategories={tripsCategories} />

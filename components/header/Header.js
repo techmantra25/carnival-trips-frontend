@@ -56,7 +56,7 @@ export default function Header() {
     getAll();
   }, []);
 
-  console.log("All Destinations:", allDestinations);
+  // console.log("All Destinations:", allDestinations);
 
   return (
     <>

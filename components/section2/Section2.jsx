@@ -1,15 +1,22 @@
 export const dynamic = "force-dynamic";
 
+import { getAllTripCategories } from "@/api/tripApi";
 import Brands from "./Brands";
 import Clouds from "./Clouds";
 import HomePageContainer from "./HomePageContainer";
+import { getOffers } from "@/api/homepageApi";
 
 export default async function Section2() {
+  const response = await getAllTripCategories();
+  const tripsCategories = response?.data;
+
+  const offerResponse = await getOffers();
+  const offers = offerResponse?.data;
   return (
     <section className="section-2">
       <Clouds />
       <Brands />
-      <HomePageContainer />
+      <HomePageContainer tripsCategories={tripsCategories} offers={offers} />
     </section>
   );
 }
