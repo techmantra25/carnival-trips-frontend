@@ -216,7 +216,7 @@ header .navbar .login-nav-item .nav-link img {
   font-weight: 700;
   color: #fff;
   text-align: center;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   line-height: 10px;
 }
 .no-places {
