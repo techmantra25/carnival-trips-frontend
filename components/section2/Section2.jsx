@@ -4,7 +4,7 @@ import { getAllTripCategories } from "@/api/tripApi";
 import Brands from "./Brands";
 import Clouds from "./Clouds";
 import HomePageContainer from "./HomePageContainer";
-import { getOffers } from "@/api/homepageApi";
+import { getHomePageActivities, getOffers } from "@/api/homepageApi";
 
 export default async function Section2() {
   const response = await getAllTripCategories();
@@ -12,11 +12,15 @@ export default async function Section2() {
 
   const offerResponse = await getOffers();
   const offers = offerResponse?.data;
+
+  const ActivityResponse = await getHomePageActivities();
+  const activities = ActivityResponse?.data;
+
   return (
     <section className="section-2">
       <Clouds />
       <Brands />
-      <HomePageContainer tripsCategories={tripsCategories} offers={offers} />
+      <HomePageContainer tripsCategories={tripsCategories} offers={offers} activities={activities}/>
     </section>
   );
 }

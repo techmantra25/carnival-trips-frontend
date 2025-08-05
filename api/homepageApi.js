@@ -110,3 +110,15 @@ export const ExploreTripCategory = async (category) => {
     throw error;
   }
 }
+
+//https://vanguardit.co/dev/carnival_trip_admin/api/home-page-activities
+
+export const getHomePageActivities = async () => {
+  try {
+    const response = await api.get("/home-page-activities");
+    return response?.data;
+  } catch (error) {
+    console.error("Error fetching home page activities data:", error);
+    throw error;
+  }
+}
