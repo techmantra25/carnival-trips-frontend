@@ -21,19 +21,35 @@ const ActivityCard = ({ activityData, destination, packageData }) => {
     <div className="swiper-slide" style={{ cursor: show ? "default" : "pointer" }}>
       <div className="content-wrap">
         <div className="img-wrap">
-          <Link
+          <div
+            className="destination-badge"
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              backgroundColor: "rgba(0, 0, 0, 0.7)",
+              color: "white",
+              padding: "5px 10px",
+              borderRadius: "5px",
+              zIndex: 1,
+              fontSize: "12px",
+            }}
+          >
+            {activityData?.destination_name}
+          </div>
+          {/* <Link
             href={`/itinerary/${activityData?.slug}`}
             style={{ display: "block", pointerEvents: show ? "none" : "auto" }}
             tabIndex={-1}
             className="itinerary-link"
-          >
+          > */}
             <Image
               width={500}
               height={800}
               src={activityData?.main_image}
               alt={activityData?.title}
             />
-          </Link>
+          {/* </Link> */}
         </div>
         <div className="info">
           <span className="package">{formatDuration(activityData?.activity_durations || "")}</span>

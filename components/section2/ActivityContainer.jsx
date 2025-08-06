@@ -5,6 +5,8 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import ActivityCard from "./ActivityCard";
+import Link from "next/link";
+import Image from "next/image";
 
 const ActivityContainer = ({ activities, offers }) => {
   return (
@@ -20,42 +22,22 @@ const ActivityContainer = ({ activities, offers }) => {
 
 export default ActivityContainer;
 
-const ActivityPackageList = ({ activities, offers }) => {
+const ActivityPackageList = ({ activities: activitiesData, offers }) => {
   console.log("Offers:", offers);
-  console.log("Activities:", activities);
-  return (
-    <>
-      {activities &&
-        activities.length > 0 &&
-        activities.map((destination, index) => (
-          <React.Fragment key={destination.destination_id || index}>
-            <ActivityPackageInfo
-              packageData={destination}
-              destination={destination}
-            />
-            {/* <BannerContainer BannerElement={offers[index]} /> */}
-          </React.Fragment>
-        ))}
-    </>
-  );
-};
+  console.log("Activities:", activitiesData);
 
-const ActivityPackageInfo = ({ packageData, destination }) => {
+  const activityCategories = activitiesData?.activity_categories || [];
+
   return (
     <div className="inner-section content-section">
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className="section-heading">
-              <h2>{packageData?.destination_name}</h2>
-            </div>
-            {packageData.activity_categories?.map((category) => (
-              <ActivityCategory
-                key={category.category_id}
-                category={category}
-                destination={destination}
-                packageData={packageData}
-              />
+            {activityCategories.map((category, index) => (
+              <React.Fragment key={index}>
+                <ActivityCategory category={category} />
+                <BannerContainer BannerElement={offers[index]} />
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -64,7 +46,7 @@ const ActivityPackageInfo = ({ packageData, destination }) => {
   );
 };
 
-const ActivityCategory = ({ category, destination, packageData }) => {
+const ActivityCategory = ({ category }) => {
   const uniqueId = useId();
   const [showGrid, setShowGrid] = useState(false);
 
@@ -80,7 +62,7 @@ const ActivityCategory = ({ category, destination, packageData }) => {
   return (
     <div className="category-section mb-5">
       <div className="section-heading">
-        <h4>{category.category_name}</h4>
+        <h2 className="text-capitalize">{category.category_name}</h2>
         {activities.length > 4 && (
           <a
             href="#"
@@ -113,12 +95,8 @@ const ActivityCategory = ({ category, destination, packageData }) => {
               }}
             >
               {activities.map((activity) => (
-                <SwiperSlide key={activity.id}>
-                  <ActivityCard
-                    activityData={activity}
-                    destination={destination}
-                    packageData={packageData}
-                  />
+                <SwiperSlide key={activity.activity_id}>
+                  <ActivityCard activityData={activity} />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -128,10 +106,7 @@ const ActivityCategory = ({ category, destination, packageData }) => {
             <div
               className={`swiper-button-next listing-content-next listing-content1-next ${nextClass}`}
             >
-              <img
-                src="/assets/icons/slider-angle-right.png"
-                alt="next"
-              />
+              <img src="/assets/icons/slider-angle-right.png" alt="next" />
             </div>
             <div
               className={`swiper-button-prev listing-content-prev listing-content1-prev ${prevClass}`}
@@ -143,19 +118,59 @@ const ActivityCategory = ({ category, destination, packageData }) => {
       ) : (
         <div className="itinerary-grid row swiper listing-content-swiper listing-content1-swiper">
           {activities.map((activity) => (
-            <div
-              className="col-md-3 col-sm-6 mb-3"
-              key={activity.id}
-            >
-              <ActivityCard
-                activityData={activity}
-                destination={destination}
-                packageData={packageData}
-              />
+            <div className="col-md-3 col-sm-6 mb-3" key={activity.activity_id}>
+              <ActivityCard activityData={activity} />
             </div>
           ))}
         </div>
       )}
+    </div>
+  );
+};
+
+const BannerContainer = ({ BannerElement }) => {
+  // Extract relative path from full link
+  const relativeLink = BannerElement?.link
+    ? new URL(BannerElement.link).pathname
+    : null;
+
+  if (!BannerElement || !BannerElement.image) {
+    return null; // Return null if BannerElement or image is not available
+  }
+
+  return (
+    <div
+      className="inner-section campaign-section"
+      title={BannerElement?.title}
+      style={{ cursor: relativeLink ? "pointer" : "default" }}
+    >
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <div className="campaign-box">
+              {relativeLink ? (
+                <Link href={relativeLink}>
+                  <Image
+                    width={1231}
+                    height={367}
+                    src={BannerElement?.image || "/assets/images/banner.png"}
+                    alt={BannerElement?.title || "Banner"}
+                    layout="responsive"
+                  />
+                </Link>
+              ) : (
+                <Image
+                  width={1231}
+                  height={367}
+                  src={BannerElement?.image}
+                  alt={BannerElement?.title || "Banner"}
+                  layout="responsive"
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

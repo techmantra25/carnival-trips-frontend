@@ -93,11 +93,13 @@ export default function Header() {
                 <SocialIcons />
               </ul>
             </div>
+              <ul className="navbar-nav custom-navbar">
             <div className="hamburger-all d-none d-xl-block" onClick={handleShowAllDestinations}>
               <div className="hamburger-wrap">
                 <Menu />
               </div>
             </div>
+            </ul>
             <div className="hamburger d-xl-none" onClick={handleShow}>
               <div className="hamburger-wrap">
                 <AlignJustify />

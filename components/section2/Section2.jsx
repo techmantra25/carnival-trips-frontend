@@ -14,7 +14,8 @@ export default async function Section2() {
   const offers = offerResponse?.data;
 
   const ActivityResponse = await getHomePageActivities();
-  const activities = ActivityResponse?.data;
+  console.log(ActivityResponse, "ActivityResponse");
+  const activities = ActivityResponse || [];
 
   return (
     <section className="section-2">
