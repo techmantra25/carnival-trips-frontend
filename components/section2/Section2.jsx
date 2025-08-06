@@ -4,7 +4,7 @@ import { getAllTripCategories } from "@/api/tripApi";
 import Brands from "./Brands";
 import Clouds from "./Clouds";
 import HomePageContainer from "./HomePageContainer";
-import { getHomePageActivities, getOffers } from "@/api/homepageApi";
+import { getHomePageActivities, getHomePageExperiences, getOffers } from "@/api/homepageApi";
 
 export default async function Section2() {
   const response = await getAllTripCategories();
@@ -17,11 +17,15 @@ export default async function Section2() {
   console.log(ActivityResponse, "ActivityResponse");
   const activities = ActivityResponse || [];
 
+  const ExperienceResponse = await getHomePageExperiences();
+  console.log(ExperienceResponse, "ExperienceResponse");
+  const experiences = ExperienceResponse || [];
+
   return (
     <section className="section-2">
       <Clouds />
       <Brands />
-      <HomePageContainer tripsCategories={tripsCategories} offers={offers} activities={activities}/>
+      <HomePageContainer tripsCategories={tripsCategories} offers={offers} activities={activities} experiences={experiences} />
     </section>
   );
 }

@@ -122,3 +122,15 @@ export const getHomePageActivities = async () => {
     throw error;
   }
 }
+
+//https://vanguardit.co/dev/carnival_trip_admin/api/home-page-experiences
+
+export const getHomePageExperiences = async () => {
+  try {
+    const response = await api.get("/home-page-experiences");
+    return response?.data;
+  } catch (error) {
+    console.error("Error fetching home page experiences data:", error);
+    throw error;
+  }
+}

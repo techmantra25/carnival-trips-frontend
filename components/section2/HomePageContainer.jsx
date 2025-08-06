@@ -5,7 +5,7 @@ import ActivityContainer from "./ActivityContainer";
 import ExperienceContainer from "./ExperienceContainer";
 import useTabsStore from "@/stores/useTabsStore";
 
-const HomePageContainer = ({ tripsCategories, offers, activities }) => {
+const HomePageContainer = ({ tripsCategories, offers, activities, experiences }) => {
   const { selectedTab, setSelectedTab } = useTabsStore();
   console.log("Selected Tab:", selectedTab);
 
@@ -18,7 +18,7 @@ const HomePageContainer = ({ tripsCategories, offers, activities }) => {
         />
       )}
       {selectedTab === "activities" && <ActivityContainer activities={activities} offers={offers}/>}
-      {selectedTab === "experiences" && <ExperienceContainer />}
+      {selectedTab === "experiences" && <ExperienceContainer  experiences={experiences} offers={offers}/>}
     </div>
   );
 };
