@@ -93,12 +93,12 @@ export default function Header() {
                 <SocialIcons />
               </ul>
             </div>
-            <div className="hamburger-all" onClick={handleShowAllDestinations}>
+            <div className="hamburger-all d-none d-xl-block" onClick={handleShowAllDestinations}>
               <div className="hamburger-wrap">
                 <Menu />
               </div>
             </div>
-            <div className="hamburger" onClick={handleShow}>
+            <div className="hamburger d-xl-none" onClick={handleShow}>
               <div className="hamburger-wrap">
                 <AlignJustify />
               </div>
@@ -109,6 +109,7 @@ export default function Header() {
           show={showAllDestinations}
           onHide={handleCloseAllDestinations}
           placement="end"
+          style={{ background: "#f8f9fa" }}
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>
@@ -121,29 +122,55 @@ export default function Header() {
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <ul className="navbar-nav mobile-menu">
-              <li>
-                <h4>Explore All Destinations</h4>
-              </li>
+            <h4 className="mb-4">Explore All Destinations</h4>
+            <div className="row">
               {allDestinations.map((category) => (
-                <li className="nav-item" key={category.id}>
+                <div className="col-6 mb-4" key={category.id}>
                   <Link
-                    className="nav-link"
                     href={`/destination/${category.slug}`}
                     onClick={handleCloseAllDestinations}
+                    style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <Image
-                      src={category?.image || "/fallback.jpg"} // fallback if image missing
-                      alt={category.name}
-                      width={100}
-                      height={50}
-                      style={{ objectFit: "cover" }}
-                    />
-                    {category.name}
+                    <div
+                      className="card h-100"
+                      style={{
+                        border: "none",
+                        boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                        borderRadius: "10px",
+                        overflow: "hidden",
+                        transition: "transform 0.2s",
+                      }}
+                      onMouseOver={(e) =>
+                        (e.currentTarget.style.transform = "scale(1.05)")
+                      }
+                      onMouseOut={(e) =>
+                        (e.currentTarget.style.transform = "scale(1)")
+                      }
+                    >
+                      <Image
+                        src={category?.image || "/fallback.jpg"}
+                        alt={category.name}
+                        width={150}
+                        height={80}
+                        style={{
+                          objectFit: "cover",
+                          width: "100%",
+                          height: "80px",
+                        }}
+                      />
+                      <div className="card-body text-center p-2">
+                        <h6
+                          className="card-title"
+                          style={{ fontSize: "0.9rem" }}
+                        >
+                          {category.name}
+                        </h6>
+                      </div>
+                    </div>
                   </Link>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </Offcanvas.Body>
         </Offcanvas>
         <Offcanvas show={show} onHide={handleClose} placement="end">
@@ -171,7 +198,59 @@ export default function Header() {
                 </li>
               ))}
             </ul>
-
+           <ul className="navbar-nav mobile-menu">
+           
+             <h6 className="mb-4">Explore All Destinations</h6>
+             <div className="row">
+              {allDestinations.map((category) => (
+                <div className="col-6 mb-4" key={category.id}>
+                  <Link
+                    href={`/destination/${category.slug}`}
+                    onClick={handleCloseAllDestinations}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <div
+                      className="card h-100"
+                      style={{
+                        border: "none",
+                        boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                        borderRadius: "10px",
+                        overflow: "hidden",
+                        transition: "transform 0.2s",
+                      }}
+                      onMouseOver={(e) =>
+                        (e.currentTarget.style.transform = "scale(1.05)")
+                      }
+                      onMouseOut={(e) =>
+                        (e.currentTarget.style.transform = "scale(1)")
+                      }
+                    >
+                      <Image
+                        src={category?.image || "/fallback.jpg"}
+                        alt={category.name}
+                        width={150}
+                        height={80}
+                        style={{
+                          objectFit: "cover",
+                          width: "100%",
+                          height: "80px",
+                        }}
+                      />
+                      <div className="card-body text-center p-2">
+                        <h6
+                          className="card-title"
+                          style={{ fontSize: "0.9rem" }}
+                        >
+                          {category.name}
+                        </h6>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+           
+           </ul>
             <ul className="navbar-nav custom-navbar">
               <SocialIcons />
             </ul>
