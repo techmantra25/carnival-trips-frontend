@@ -22,7 +22,7 @@ const ExperienceCard = ({ experienceData, destination, packageData }) => {
   };
 
   return (
-    <div className="swiper-slide" style={{ cursor: show ? "default" : "pointer" }}>
+    <div className="swiper-slide" style={{ cursor: show ? "default" : "default" }}>
       <div className="content-wrap">
         <div className="img-wrap">
           <div
@@ -50,12 +50,12 @@ const ExperienceCard = ({ experienceData, destination, packageData }) => {
         </div>
         <div className="info">
           <span className="package">{formatDuration(experienceData?.experience_durations || "")}</span>
-          <Link
+          {/* <Link
             href={`/itinerary/${experienceData?.slug}`}
             style={{ textDecoration: "none", color: "inherit", pointerEvents: show ? "none" : "auto" }}
             tabIndex={-1}
             className="itinerary-link"
-          >
+          > */}
             <label className="title">{experienceData?.title}</label>
             <p className="desc">{experienceData?.short_description}.</p>
             <div className="price">
@@ -79,8 +79,8 @@ const ExperienceCard = ({ experienceData, destination, packageData }) => {
                 ₹{Number(experienceData?.selling_price).toLocaleString("en-IN")}
               </span>
             </div>
-          </Link>
-          <div className="list-cta">
+          {/* </Link> */}
+          {/* <div className="list-cta">
             <a
               onClick={(e) => {
                 e.stopPropagation();
@@ -92,7 +92,7 @@ const ExperienceCard = ({ experienceData, destination, packageData }) => {
             >
               Book Now
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
 

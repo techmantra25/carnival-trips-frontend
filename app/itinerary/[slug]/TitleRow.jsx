@@ -23,7 +23,9 @@ const TitleRow = ({ ItineryData, slug }) => {
   return (
     <div className="col-lg-8 col-12">
       <div className="detail-content-left">
-        <h1 className="content-heading content-heading-details">{ItineryData?.title || "No Title"}</h1>
+        <h1 className="content-heading content-heading-details">
+          {ItineryData?.title || "No Title"}
+        </h1>
         <div className="short-info-panel">
           <div className="info-row-1">
             <div className="info-stack-wrapper">
@@ -34,6 +36,19 @@ const TitleRow = ({ ItineryData, slug }) => {
                 {convertToShortDuration(ItineryData?.trip_durations) ||
                   "No Duration"}
               </span>
+            </div>
+            <div  className="days-detail">
+            {ItineryData?.division_summary?.map((ele, index) => (
+              
+                <ul>
+                  <li key={index}>
+                    <span>{ele?.day || 0}D {" "} {ele?.city || "No Location"}</span>
+                    {/* <span className="line-1">D</span> */}
+                    {/* <span className="line-2">{ele?.city || "No Location"}</span> */}
+                  </li> 
+                </ul>
+              
+            ))}
             </div>
             {ItineryData?.division_summary?.map((ele, index) => (
               <div className="days-detail" key={index}>
@@ -128,7 +143,9 @@ const TitleRow = ({ ItineryData, slug }) => {
                       </td>
                       <td className="facility">
                         <div style={{ marginBottom: "8px" }}>
-                          <strong style={{ color: "#2e7d32", fontSize: "14px" }}>
+                          <strong
+                            style={{ color: "#2e7d32", fontSize: "14px" }}
+                          >
                             ✓ Inclusions:
                           </strong>
                           <div style={{ marginTop: "4px" }}>
@@ -148,7 +165,9 @@ const TitleRow = ({ ItineryData, slug }) => {
                             marginBottom: showExclusions[index] ? "8px" : "0",
                           }}
                         >
-                          <strong style={{ color: "#d32f2f", fontSize: "14px" }}>
+                          <strong
+                            style={{ color: "#d32f2f", fontSize: "14px" }}
+                          >
                             ✗ Exclusions:
                           </strong>
                           <div style={{ marginTop: "4px" }}>
@@ -179,11 +198,13 @@ const TitleRow = ({ ItineryData, slug }) => {
                           }}
                           onMouseEnter={(e) => {
                             e.target.style.transform = "scale(1.05)";
-                            e.target.style.boxShadow = "0 4px 8px rgba(0,0,0,0.3)";
+                            e.target.style.boxShadow =
+                              "0 4px 8px rgba(0,0,0,0.3)";
                           }}
                           onMouseLeave={(e) => {
                             e.target.style.transform = "scale(1)";
-                            e.target.style.boxShadow = "0 2px 4px rgba(0,0,0,0.2)";
+                            e.target.style.boxShadow =
+                              "0 2px 4px rgba(0,0,0,0.2)";
                           }}
                         >
                           {showExclusions[index]
@@ -213,16 +234,22 @@ const TitleRow = ({ ItineryData, slug }) => {
                                 border: "1px solid #D2042D",
                                 cursor: "default",
                                 transition: "all 0.3s ease",
-                                animation: `fadeInUp 0.3s ease ${idx * 0.1}s both`,
+                                animation: `fadeInUp 0.3s ease ${
+                                  idx * 0.1
+                                }s both`,
                               }}
                               onMouseEnter={(e) => {
-                                e.target.style.transform = "translateY(-2px) scale(1.05)";
-                                e.target.style.boxShadow = "0 4px 8px rgba(210,4,45,0.15)";
+                                e.target.style.transform =
+                                  "translateY(-2px) scale(1.05)";
+                                e.target.style.boxShadow =
+                                  "0 4px 8px rgba(210,4,45,0.15)";
                                 e.target.style.background = "#fff";
                               }}
                               onMouseLeave={(e) => {
-                                e.target.style.transform = "translateY(0) scale(1)";
-                                e.target.style.boxShadow = "0 2px 4px rgba(0,0,0,0.10)";
+                                e.target.style.transform =
+                                  "translateY(0) scale(1)";
+                                e.target.style.boxShadow =
+                                  "0 2px 4px rgba(0,0,0,0.10)";
                                 e.target.style.background = "#fff";
                               }}
                             >

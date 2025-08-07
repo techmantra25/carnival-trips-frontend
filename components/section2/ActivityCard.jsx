@@ -18,7 +18,7 @@ const ActivityCard = ({ activityData, destination, packageData }) => {
   };
 
   return (
-    <div className="swiper-slide" style={{ cursor: show ? "default" : "pointer" }}>
+    <div className="swiper-slide" style={{ cursor: show ? "default" : "default" }}>
       <div className="content-wrap">
         <div className="img-wrap">
           <div
@@ -53,12 +53,12 @@ const ActivityCard = ({ activityData, destination, packageData }) => {
         </div>
         <div className="info">
           <span className="package">{formatDuration(activityData?.activity_durations || "")}</span>
-          <Link
+          {/* <Link
             href={`/itinerary/${activityData?.slug}`}
             style={{ textDecoration: "none", color: "inherit", pointerEvents: show ? "none" : "auto" }}
             tabIndex={-1}
             className="itinerary-link"
-          >
+          > */}
             <label className="title">{activityData?.title}</label>
             <p className="desc">{activityData?.short_description}.</p>
             <div className="price">
@@ -82,8 +82,8 @@ const ActivityCard = ({ activityData, destination, packageData }) => {
                 ₹{Number(activityData?.selling_price).toLocaleString("en-IN")}
               </span>
             </div>
-          </Link>
-          <div className="list-cta">
+          {/* </Link> */}
+          {/* <div className="list-cta">
             <a
               onClick={(e) => {
                 e.stopPropagation();
@@ -95,7 +95,7 @@ const ActivityCard = ({ activityData, destination, packageData }) => {
             >
               Book Now
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
 
