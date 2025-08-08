@@ -123,6 +123,7 @@ const ExperienceContainer = ({ experiences, offers }) => {
     <div className="inner-section inner-section-2">
       <section>
         <div className="content">
+         
           <ExperiencePackageList experiences={experiences} offers={offers} />
         </div>
       </section>

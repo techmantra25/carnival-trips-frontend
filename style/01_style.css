@@ -2704,3 +2704,15 @@ footer .container {
 .hideClass {
   display: none; 
 }
+
+
+/* 29-05-2025 */
+
+.productCard_destinationListWrapper__0TGh2 {
+    display: flex;
+    width: 100%;
+    background: linear-gradient(180deg, #ffba0a1a, #ffba0a00);
+    position: relative;
+    border-radius: 5px;
+    margin-bottom: 2px;
+}

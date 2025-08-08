@@ -81,10 +81,7 @@ export default function BlogDetails({ slug }) {
           </p>
         </div>
 
-        <div className="related-post-single">
-          <h2>Related Post</h2>
-          <RelatedPosts  />
-        </div>
+        <RelatedPosts />
       </div>
     </section>
   );
